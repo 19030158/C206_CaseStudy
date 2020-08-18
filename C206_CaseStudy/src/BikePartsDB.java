@@ -24,7 +24,7 @@ public class BikePartsDB {
 		//show bike menu, ask user for input, process the choice
 		int subOption = 0;
 		Scanner myObj = new Scanner(System.in);
-
+//
 		// Enter input 
 		System.out.println("Enter Choice : "); 
 		subOption = myObj.nextInt();   
