@@ -7,10 +7,13 @@ public class BikeParts {
 	private boolean isAvailable;
 	
 	
-	public BikeParts(String model, String description, boolean isAvailable) {
-		//initialize paramaters
+	public BikeParts(String partName, String description, boolean isAvailable) {
+		this.partName = partName;
+		this.description = description;
+		this.isAvailable = isAvailable;
 	}
-	
+
+
 	public String getPartName() {
 		return partName;
 	}
