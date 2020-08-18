@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BikePartsDB {
 	
@@ -23,11 +22,9 @@ public class BikePartsDB {
 	public static void menuChoice() {
 		//show bike menu, ask user for input, process the choice
 		int subOption = 0;
-		Scanner myObj = new Scanner(System.in);
 //
 		// Enter input 
-		System.out.println("Enter Choice : "); 
-		subOption = myObj.nextInt();   
+		subOption = Helper.readInt("Enter Choice : ");
 		
 		System.out.println("Choice : " + subOption);
 	}
@@ -88,14 +85,11 @@ public class BikePartsDB {
 	//==========Option 2 ==============
 	public static void inputBikeDetails() {
 		//request user for the bike to add to the list
-		Scanner myObj = new Scanner(System.in);
 		String bPtoAdd;
 		String toAddDesc;
 		// Enter input 
-		System.out.println("Enter Bike Part : "); 
-		bPtoAdd = myObj.nextLine();  
-		System.out.println("Enter Bike Part Description : "); 
-		toAddDesc = myObj.nextLine();  
+		bPtoAdd= Helper.readString("Enter Bike Part : "); 
+		toAddDesc = Helper.readString("Enter Bike Part Description : "); 
 //set isAvailable to true
 		BikeParts new1 = new BikeParts(bPtoAdd, toAddDesc, true);
 		addBike(new1);
@@ -109,11 +103,9 @@ public class BikePartsDB {
 		
 	//==========Option 3 ==============
 	public static int selectBike() {
-		Scanner myObj = new Scanner(System.in);
 		int toDel;
 		// Enter input 
-		System.out.println("Enter Bike Part No. : "); 
-		toDel = myObj.nextInt();   
+		toDel = Helper.readInt("Enter Bike Part No. : "); 
 		int finalDel = toDel - 1;
 		
 		delBike(finalDel);
@@ -125,7 +117,7 @@ public class BikePartsDB {
 	public static void delBike(int bikeID) {
 		//remove bike to list
 		for (int i = 0; i < bikePartsList.size(); i++) {
-			bikePartsList.remove(bikeID);
+			bikePartsList.remove(bikeID); //removes the bikePart with the id bikeID
 		}
 	}
 	

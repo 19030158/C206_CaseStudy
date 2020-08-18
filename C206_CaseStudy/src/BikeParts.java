@@ -43,8 +43,5 @@ public class BikeParts {
 		this.isAvailable = isAvailable;
 	}
 
-	//public String toString() {
-		//format string to return
-				
-	//}
+
 }

@@ -7,7 +7,7 @@ public class C206_CaseStudy {
 	public static void main(String[] args) {
 		
 		//insert initial data
-		BikeDB.populateBikeDB();
+	//	BikeDB.populateBikeDB();
 		
 		int option = 0;
 			
@@ -18,12 +18,12 @@ public class C206_CaseStudy {
 			
 			if (option == 1) {
 				//Call BikeDB 
-				BikeDB.handleBikeOptions();
+			//	BikeDB.handleBikeOptions();
 				
 				
 			}else if (option == 2) {
 				//Call BikePartDB menu
-				
+				BikePartsDB.menuChoice();
 			}else if (option == 3) {
 				//Call Feedback menu
 				
@@ -38,7 +38,7 @@ public class C206_CaseStudy {
 		}
 		
 		//clean up data
-		BikeDB.cleanupBikeDB();
+//		BikeDB.cleanupBikeDB();
 	}
 	
 	public static void showMainMenu() {
