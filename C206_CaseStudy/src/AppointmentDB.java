@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 /**
  * I declare that this code was written by me.
  * I will not copy or allow others to copy my code.
@@ -34,7 +33,7 @@ private static ArrayList<Appointment> appointmentList = new ArrayList<Appointmen
 	}
 	
 	public static void showAppointmentMenu() {
-		Helper.setHeader("Appointment Menu");
+		System.out.println("Appointment Menu");
 		System.out.println("1: View appointment list");
 		System.out.println("2. Add in an appointment");
 		System.out.println("3. Delete an appointment");
@@ -53,9 +52,10 @@ private static ArrayList<Appointment> appointmentList = new ArrayList<Appointmen
 				
 		
 			} else if (subOption  == 3) {
+				viewAllAppointment(appointmentList);
 				delAppointment(appointmentList);
 				
-			} else if (subOption == 4) {
+			}else if (subOption == 4) {
 				System.out.println("Goodbye!");
 				
 			}else {
@@ -88,6 +88,21 @@ private static ArrayList<Appointment> appointmentList = new ArrayList<Appointmen
 		String output = String.format("%-20s %-20s %-80s %-80s\n", "Date", "Time", "Customer name", "Product ordered");
 		output+= retrieveAllAppointment(appointmentList);
 		System.out.println(output);
+		
+		char date = Helper.readChar("Would you like to search the list by date? (Y/N): ");
+		if (date == 'Y' || date == 'y') {
+			output = String.format("%-20s %-20s %-80s %-80s\n", "Date", "Time", "Customer name", "Product ordered");
+			String input = Helper.readString("Please enter date (DD/MM): ");
+			for (Appointment i : appointmentList) {
+				if (input.equals(i.getDate())) {
+					output+= String.format("%-20s %-20s %-80s %-80s\n", i.getDate(), i.getTime(), i.getCustomerName(), i.getProductDetail());
+					System.out.println(output);
+				
+				}
+			}
+			
+		}
+		
 	}
 	
 	
@@ -135,5 +150,4 @@ private static ArrayList<Appointment> appointmentList = new ArrayList<Appointmen
 			}
 		} 
 	}
-	
 }

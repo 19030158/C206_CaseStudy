@@ -44,15 +44,21 @@ public class AppointmentDBTest {
 		appointmentList.add(c2);
 		
 		String allAppt = AppointmentDB.retrieveAllAppointment(appointmentList);
-		String testOutput = String.format("%-20s %-20s %-80s %-80s\n", "13/08", "7:30 P.M", "John Smith", "CBR 1000");
+		String testOutput = "";
+		
+		testOutput += String.format("%-20s %-20s %-80s %-80s\n", "13/08", "7:30 P.M", "John Smith", "CBR 1000");
 		testOutput += String.format("%-20s %-20s %-80s %-80s\n", "15/08", "12:45 P.M", "Jane Doe", "Bike oil");
 		assertEquals(testOutput, allAppt);
 		
-		fail("Not yet implemented");
 	}
 	
 	public void testAddAppointment() {
-		
+		//Check appointment list not null
+		assertNotNull("Check if list not null", appointmentList);
+		//Check when something is added into the list, the list size increases and correct item is added in
+		AppointmentDB.addAppointment(appointmentList, c1);
+		assertEquals("Check list size is now 1", 1, appointmentList.size());
+		assertSame("Check that correct item is added", c1, appointmentList.get(0));
 	}
-
+	
 }
