@@ -6,7 +6,7 @@ public class BikePartsDB {
 	
 	public static void addBikeParts(String BikeParts) {
 		//add some data to the list
-		BikeParts bikeP1 = new BikeParts("Grip" , "To fix it on handle", true );
+		BikeParts bikeP1 = new BikeParts("Grip" , "To fix it on handle", true);
 		BikeParts bikeP2 = new BikeParts("Paddle", "For cycle", true);
 		BikeParts bikeP3 = new BikeParts("Bell", "For signal", true);
 	}
