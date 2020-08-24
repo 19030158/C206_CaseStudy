@@ -1,4 +1,5 @@
 
+
 public class Bike {
 	
 	private String model;
@@ -7,7 +8,7 @@ public class Bike {
 	
 	
 	public Bike(String model, String description, boolean isAvailable) {
-		//initialize paramaters
+		//initialize parameters
 		this.model = model;
 		this.description = description;
 		this.isAvailable = isAvailable;
@@ -44,4 +45,6 @@ public class Bike {
 				
 	}
 
+
+	
 }

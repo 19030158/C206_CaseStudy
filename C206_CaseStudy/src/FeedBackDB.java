@@ -32,9 +32,10 @@ public class FeedBackDB {
 		
        // Enter input 
 		System.out.println("Enter Choice : "); 
-		subOption = scanner.nextInt();   
+		subOption = scanner.nextInt();  
 		
-		System.out.println("Choice : " + subOption);
+		processOption(subOption);
+
 	}
 	public static void processOption(int subOption) {
 		
@@ -42,11 +43,13 @@ public class FeedBackDB {
 			if (subOption == 1) {
 				// View all feedback
 			FeedBackDB.shAllFeedback( allFback);
+			break;
 				
 		
 			} else if (subOption  == 2) {
 				// View feedback by name 
 		     FeedBackDB.fbByName(allFback);
+		     break;
 		     
 			
 		
@@ -54,43 +57,42 @@ public class FeedBackDB {
 				// Record feedback
 			 Feedback feb =fbForm();
 		     FeedBackDB.addFeedback(allFback,feb);
+		     break;
 						
 			}
 			
 			else {
 				System.out.println("EXITING");
+				break;
 			}
 			
 			//show the menu again & ask for option
 //			fbMenu();
-//			menuChoice();
+			
 		}
+		menuChoice();
 
 	}
 	
 	public static String retrieveAllfeedback(ArrayList<Feedback> allFback) {
-		String output = "";
 
-		for (int i = 0; i < allFback.size(); i++) {
-
-			output += String.format("%-10s %-30s %-10s %-10s %-20d\n", allFback.get(i).getFeedback(),
-					allFback.get(i).getName());
-				
-		}
-		return output;
-	}
-	
-	public static String shAllFeedback(ArrayList<Feedback> allFback) {
-		String op ="";
-		
+            String op =" ";
+            
 		for(int i = 0 ; i < allFback.size() ; i ++) {
 			
-			String output = String.format(" %-10s ","FEEDBACKS");
-			output += String.format("-10s", allFback.get(i).getFeedback());
-			System.out.println(output);
+			
+			op += String.format("%-5s %10s\n", allFback.get(i).getFeedback(),allFback.get(i).getName());
+			System.out.println(op);
 			
 		}	
 		return op;
+	}
+	
+	public static void shAllFeedback(ArrayList<Feedback> allFback) {
+		FeedBackDB.setHeader("FEEDBACK LIST");
+		String op = String.format(" %-5s %15s\n","FEEDBACKS:" ,"NAME:");
+	    op += retrieveAllfeedback(allFback);	
+		System.out.println(op);
 	}
 	
 	public static void fbByName(ArrayList<Feedback> allFback) {
@@ -99,8 +101,8 @@ public class FeedBackDB {
 	for(int i = 0 ; i < allFback.size() ; i ++) {
 		if(name.equalsIgnoreCase(allFback.get(i).getName())) {
 		
-			String output = String.format(" %-10s %-10s ","NAME" ,"FEEDBACKS");
-			output += String.format("%-10s   %-10s",allFback.get(i).getName(), allFback.get(i).getFeedback());
+			String output = String.format(" %-10s %-10s\n ","NAME" ,"FEEDBACKS");
+			output += String.format("%-10s   %-10s\n",allFback.get(i).getName(), allFback.get(i).getFeedback());
 			System.out.println(output);
 			
 		}
@@ -117,8 +119,9 @@ public class FeedBackDB {
 		
 		Feedback feb = new Feedback(fb,name);
 		return feb;
-	
 	}
+	
+	    
 	public static void addFeedback(ArrayList<Feedback> allFback , Feedback feb) {
 		
 		allFback.add(feb);
@@ -126,6 +129,23 @@ public class FeedBackDB {
 		
 		
 	}
+	/**
+	 * 
+	 */
+	public static void handleFeedbackOptions() {
+		fbMenu();
+		
+		menuChoice();
+		processOption(0);
+		
+	}
+	public static void setHeader(String header) {
+		Helper.line(80, "-");
+		System.out.println(header);
+		Helper.line(80, "-");
+	}
+	
 	
 	
 }
+	

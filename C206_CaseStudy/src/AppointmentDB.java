@@ -37,11 +37,13 @@ private static ArrayList<Appointment> appointmentList = new ArrayList<Appointmen
 		System.out.println("1: View appointment list");
 		System.out.println("2. Add in an appointment");
 		System.out.println("3. Delete an appointment");
+		System.out.println("4. Update an appointment");
+		System.out.println("5. Quit");
 		Helper.line(80, "-");
 	}	
 	
 	public static void processOption(int subOption) {
-		while (subOption != 4) {
+		while (subOption != 5) {
 			if (subOption == 1) {
 				viewAllAppointment(appointmentList);
 			
@@ -53,23 +55,23 @@ private static ArrayList<Appointment> appointmentList = new ArrayList<Appointmen
 		
 			} else if (subOption  == 3) {
 				viewAllAppointment(appointmentList);
-				delAppointment(appointmentList);
+				delAppointment(appointmentList, selectAppointment());
 				
-			}else if (subOption == 4) {
+			} else if (subOption == 4) {
+				viewAllAppointment(appointmentList);
+				updateAppt(appointmentList, updateAppointmentSelection());
+				
+			}else if (subOption == 5) {
 				System.out.println("Goodbye!");
 				
-			}else {
+			}else  {
 				//invalid option
 				System.out.println("Invalid type");
 			}
-			
 			//show the menu again & ask for option
-			handleAppointmentOptions();
-			
+			handleAppointmentOptions();	
 		}
-	
 	}
-	
 	//==========Option 1 ==============
 	public static String retrieveAllAppointment(ArrayList<Appointment> appointmentList) {
 		String output = "";
@@ -122,11 +124,8 @@ private static ArrayList<Appointment> appointmentList = new ArrayList<Appointmen
 		//request user for the bike to add to the list
 		Helper.line(80, "-");
 		System.out.println("Creating a new appointment");
-		Helper.line(80, "-");
-
+		Helper.line(80, "-");	
 		appointmentList.add(appt);
-		System.out.println("New appointment created");
-		
 	}
 
 	//==========Option 3 ==============
@@ -135,19 +134,44 @@ private static ArrayList<Appointment> appointmentList = new ArrayList<Appointmen
 		return customer;
 	}
 	
-	public static void delAppointment(ArrayList<Appointment> appointmentList) {
+	public static void delAppointment(ArrayList<Appointment> appointmentList, String name) {
 		Helper.line(80, "-");
 		System.out.println("Deleting an appointment");
 		Helper.line(80, "-");
-		String name = selectAppointment();
+		String selection = selectAppointment();
 		for (Appointment i : appointmentList) {
 			if (i.getCustomerName().equalsIgnoreCase(name)) {
 				
 				System.out.println("Appointment deleted");
 				appointmentList.remove(i);
+				break;
 			} else {
 				System.out.println("No such appointment with customer name found");
+				break;
 			}
 		} 
+	}
+	public static String updateAppointmentSelection() {
+		String customer = Helper.readString("Enter customer's name to update from appointment list: ");
+		return customer;
+	}
+	public static void updateAppt (ArrayList<Appointment> appointmentList, String customer) {
+		Helper.line(80, "-");
+		System.out.println("Updating an appointment");
+		Helper.line(80, "-");
+		for (int n = 0; n < appointmentList.size(); n++) {
+			if (appointmentList.get(n).getCustomerName().equalsIgnoreCase(customer)) {
+				String newDate = Helper.readString("Enter date of appointment: ");
+				String newTime = Helper.readString("Enter timing of appointment: ");
+				String newProduct = Helper.readString("Enter new product to be collected by customer: ");
+				Appointment updatedProduct = new Appointment (newDate, newTime,customer, newProduct);
+				appointmentList.set(n, updatedProduct);
+				System.out.println("Appointment updated");
+				break;
+			} else {
+				System.out.println("Customer name not in the appointment list");
+			}
+			
+		}
 	}
 }

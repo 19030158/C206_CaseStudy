@@ -51,7 +51,7 @@ public class AppointmentDBTest {
 		assertEquals(testOutput, allAppt);
 		
 	}
-	
+	@Test
 	public void testAddAppointment() {
 		//Check appointment list not null
 		assertNotNull("Check if list not null", appointmentList);
@@ -59,6 +59,19 @@ public class AppointmentDBTest {
 		AppointmentDB.addAppointment(appointmentList, c1);
 		assertEquals("Check list size is now 1", 1, appointmentList.size());
 		assertSame("Check that correct item is added", c1, appointmentList.get(0));
+	}
+	
+	@Test
+	public void testDelAppointment() {
+		///Check appointment list not null
+		assertNotNull("Check if list not null", appointmentList);
+		//When item added in, size list becomes 1
+		AppointmentDB.addAppointment(appointmentList, c1);
+		assertEquals(1, appointmentList.size());
+		//Check when command is run, appointment list gets updated and size list becomes zero
+		AppointmentDB.delAppointment(appointmentList, c1.getCustomerName());
+		assertEquals("Check if list size is 0", 0, appointmentList.size());
+
 	}
 	
 }

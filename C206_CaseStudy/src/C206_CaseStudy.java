@@ -10,7 +10,6 @@ public class C206_CaseStudy {
 		//insert initial data
 		BikeDB.populateBikeDB();
 		BikePartsDB.populateBikePartDB();
-	//	FeedBackDB.populateFeedbackDB();
 		AppointmentDB.populateAppointmentDB();
 		
 
@@ -53,7 +52,6 @@ public class C206_CaseStudy {
 		//clean up data
 		BikeDB.cleanupBikeDB();
 		BikePartsDB.cleanupBikePartsDB();
-		//FeedBackDB.cleanupFeedbackDB();
 		AppointmentDB.cleanupAppointmentDB();
 
 	}
