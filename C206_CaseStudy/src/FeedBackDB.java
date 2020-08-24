@@ -27,6 +27,9 @@ public class FeedBackDB {
 		//show bike menu, ask user for input, process the choice
 		int subOption = 0;
 		Scanner scanner= new Scanner(System.in);
+		
+		System.out.println("");
+		
        // Enter input 
 		System.out.println("Enter Choice : "); 
 		subOption = scanner.nextInt();   
@@ -38,17 +41,19 @@ public class FeedBackDB {
 		while (subOption != 4) {
 			if (subOption == 1) {
 				// View all feedback
-			shAllFeedback();
+			FeedBackDB.shAllFeedback( allFback);
 				
 		
 			} else if (subOption  == 2) {
 				// View feedback by name 
-		     fbByName();
+		     FeedBackDB.fbByName(allFback);
+		     
 			
 		
 			} else if (subOption  == 3) {
 				// Record feedback
-		     fbForm();
+			 Feedback feb =fbForm();
+		     FeedBackDB.addFeedback(allFback,feb);
 						
 			}
 			
@@ -57,13 +62,26 @@ public class FeedBackDB {
 			}
 			
 			//show the menu again & ask for option
-			fbMenu();
-			menuChoice();
+//			fbMenu();
+//			menuChoice();
 		}
 
 	}
 	
-	public static void shAllFeedback() {
+	public static String retrieveAllfeedback(ArrayList<Feedback> allFback) {
+		String output = "";
+
+		for (int i = 0; i < allFback.size(); i++) {
+
+			output += String.format("%-10s %-30s %-10s %-10s %-20d\n", allFback.get(i).getFeedback(),
+					allFback.get(i).getName());
+				
+		}
+		return output;
+	}
+	
+	public static String shAllFeedback(ArrayList<Feedback> allFback) {
+		String op ="";
 		
 		for(int i = 0 ; i < allFback.size() ; i ++) {
 			
@@ -71,11 +89,11 @@ public class FeedBackDB {
 			output += String.format("-10s", allFback.get(i).getFeedback());
 			System.out.println(output);
 			
-			
-		}		
+		}	
+		return op;
 	}
 	
-	public static void fbByName() {
+	public static void fbByName(ArrayList<Feedback> allFback) {
 		String name = Helper.readString("ENTER NAME > ");
 		
 	for(int i = 0 ; i < allFback.size() ; i ++) {
@@ -91,4 +109,23 @@ public class FeedBackDB {
 		}	
 		}		
 	}
+	
+	public static Feedback fbForm() {
+		
+		String name = Helper.readString("ENTER NAME >" );
+		String fb =Helper.readString("Enter Feedback >" );
+		
+		Feedback feb = new Feedback(fb,name);
+		return feb;
+	
+	}
+	public static void addFeedback(ArrayList<Feedback> allFback , Feedback feb) {
+		
+		allFback.add(feb);
+		System.out.println("Added!");
+		
+		
+	}
+	
+	
 }
