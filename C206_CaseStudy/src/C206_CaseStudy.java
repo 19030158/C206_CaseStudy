@@ -10,7 +10,7 @@ public class C206_CaseStudy {
 		//insert initial data
 		BikeDB.populateBikeDB();
 		BikePartsDB.populateBikePartDB();
-		FeedBackDB.populateFeedbackDB();
+	//	FeedBackDB.populateFeedbackDB();
 		AppointmentDB.populateAppointmentDB();
 		
 
@@ -29,14 +29,14 @@ public class C206_CaseStudy {
 				
 			}else if (option == 2) {
 				//Call BikePartDB menu
-				BikePartsDB.handleBikePartOptions();
+				//BikePartsDB.handleBikePartOptions();
 				
 				
 				BikePartsDB.menuChoice();
 
 			}else if (option == 3) {
 				//Call Feedback menu
-				FeedbackDB.handleFeedbackOptions();
+			//	FeedbackDB.handleFeedbackOptions();
 				
 				
 			}else if(option == 4) {
@@ -53,7 +53,7 @@ public class C206_CaseStudy {
 		//clean up data
 		BikeDB.cleanupBikeDB();
 		BikePartsDB.cleanupBikePartsDB();
-		FeedBackDB.cleanupFeedbackDB();
+		//FeedBackDB.cleanupFeedbackDB();
 		AppointmentDB.cleanupAppointmentDB();
 
 	}

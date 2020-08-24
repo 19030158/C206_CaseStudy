@@ -34,12 +34,37 @@ public class CustomerDB {
 		
 	}
 	
+	public static void searchCustomerName() {
+		
+		boolean found = false;
+		String name = Helper.readString("Enter name > ");
+		String output = String.format("%-10s %-10s %-10s %-10s\n","No.","Name","Email","Phone");
+		for (int i = 0; customerList.size() > i; i++) {
+			if (customerList.get(i).getName().equals(name)) {
+				output += String.format("%-10d %-10s %-10s %-10s\n", i+1, customerList.get(i).getName(),customerList.get(i).getEmail(), customerList.get(i).getPhone());
+				break;
+			}
+			
+		}
+		if (found == true) {
+			System.out.println(output);
+		}
+		else {
+			System.out.println("No customer found");
+		}
+		
+		
+		
+		
+	}
+	
 	public static void showCustomerMenu() {
 		//Display the menu
 		System.out.println("1. View all Customer");
 		System.out.println("2. Add Customer");
 		System.out.println("3. Delete Customer");
-		System.out.println("4. Exit");
+		System.out.println("4. Search Customer by Name");
+		System.out.println("5. Exit");
 		
 	}	
 	
@@ -47,7 +72,7 @@ public class CustomerDB {
 			
 		subOption =0;
 		
-		while (subOption != 4) {
+		while (subOption != 5) {
 
 			showCustomerMenu();			
 			
@@ -74,7 +99,11 @@ public class CustomerDB {
 					System.out.println("Delete unsuccessful.");
 				}
 				
-			}else if (subOption ==4){
+			} else if ( subOption == 4) {
+			
+				searchCustomerName();
+				
+			}else if (subOption ==5){
 				//invalid option
 				System.out.println("End");
 				break;
